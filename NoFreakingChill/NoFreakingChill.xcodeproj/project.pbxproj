@@ -44,6 +44,7 @@
 		EB8D210B2746F11300FFAA6C /* NoFreakingChillUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NoFreakingChillUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB8D210F2746F11300FFAA6C /* NoFreakingChillUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoFreakingChillUITests.swift; sourceTree = "<group>"; };
 		EB8D21112746F11300FFAA6C /* NoFreakingChillUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoFreakingChillUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		EB8D211E2746F38100FFAA6C /* NoFreakingChill.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NoFreakingChill.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +95,7 @@
 		EB8D20F32746F11100FFAA6C /* NoFreakingChill */ = {
 			isa = PBXGroup;
 			children = (
+				EB8D211E2746F38100FFAA6C /* NoFreakingChill.entitlements */,
 				EB8D20F42746F11100FFAA6C /* NoFreakingChillApp.swift */,
 				EB8D20F62746F11100FFAA6C /* ContentView.swift */,
 				EB8D20F82746F11200FFAA6C /* Assets.xcassets */,
@@ -416,6 +418,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = NoFreakingChill/NoFreakingChill.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"NoFreakingChill/Preview Content\"";
@@ -445,6 +448,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = NoFreakingChill/NoFreakingChill.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"NoFreakingChill/Preview Content\"";
