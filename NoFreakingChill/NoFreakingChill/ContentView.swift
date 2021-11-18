@@ -9,6 +9,8 @@ import SwiftUI
 import CoreNFC
 
 struct ContentView: View {
+    @ObservedObject var reader = NFCReader()
+    
     var body: some View {
         VStack {
             Text("To scan your NFC tag, " +
@@ -19,6 +21,7 @@ struct ContentView: View {
     }
     
     func scanAction() {
+        reader.scan()
     }
 }
 
