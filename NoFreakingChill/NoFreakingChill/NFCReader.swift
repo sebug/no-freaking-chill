@@ -12,6 +12,7 @@ class NFCReader : NSObject, NFCNDEFReaderSessionDelegate, ObservableObject {
     func scan() {
         let session = NFCNDEFReaderSession(delegate: self, queue: DispatchQueue.main,
         invalidateAfterFirstRead: false)
+        session.alertMessage = "Scan your card, will ya?";
         session.begin()
     }
     
