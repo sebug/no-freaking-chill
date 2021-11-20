@@ -22,6 +22,18 @@ class NFCReader : NSObject, NFCTagReaderSessionDelegate, ObservableObject {
     
     func tagReaderSession(_ session: NFCTagReaderSession, didDetect tags: [NFCTag]) {
         NSLog("Did detect tags")
+        if let firstTag = tags.first {
+            if case let NFCTag.iso15693(tag) = firstTag {
+                tag.readSingleBlock(requestFlags: [.highDataRate], blockNumber: 0, resultHandler: { result in
+                    switch result {
+                    case .success(let data):
+                        print(data)
+                    case .failure(_):
+                        NSLog("Somehow failed")
+                    }
+                })
+            }
+        }
     }
     
     func scan() -> String? {
