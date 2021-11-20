@@ -10,6 +10,8 @@ import SwiftUI
 import CoreNFC
 
 class NFCReader : NSObject, NFCTagReaderSessionDelegate, ObservableObject {
+    private var nfcSession: NFCTagReaderSession?
+    
     func tagReaderSessionDidBecomeActive(_ session: NFCTagReaderSession) {
         NSLog("Session did become active")
     }
@@ -26,10 +28,13 @@ class NFCReader : NSObject, NFCTagReaderSessionDelegate, ObservableObject {
         guard NFCTagReaderSession.readingAvailable else {
             return "Scanning not supported"
         }
-        let session = NFCTagReaderSession(pollingOption: NFCTagReaderSession.PollingOption.iso15693, delegate: self, queue: DispatchQueue.main)
-        session?.alertMessage = "Scan your card, will ya?";
-        session?.begin()
+        nfcSession = NFCTagReaderSession(pollingOption: NFCTagReaderSession.PollingOption.iso15693, delegate: self, queue: DispatchQueue.main)
+        nfcSession?.alertMessage = "Scan your card, will ya?";
+        nfcSession?.begin()
         return nil
     }
     
+    func stopScan() {
+        nfcSession?.invalidate()
+    }
 }
