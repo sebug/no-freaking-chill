@@ -23,9 +23,15 @@ class NFCReader : NSObject, NFCNDEFReaderSessionDelegate, ObservableObject {
     
     func readerSession(_ session: NFCNDEFReaderSession, didInvalidateWithError error: Error) {
         // Error handling
+        NSLog("Nope, that did not work")
     }
     
     func readerSession(_ session: NFCNDEFReaderSession, didDetectNDEFs messages: [NFCNDEFMessage]) {
         // Handle received messages
+        NSLog("Messages received")
+    }
+    
+    func readerSessionDidBecomeActive(_ session: NFCNDEFReaderSession) {
+        NSLog("Reader session did become active")
     }
 }
