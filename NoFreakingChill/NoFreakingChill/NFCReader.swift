@@ -9,29 +9,27 @@ import Foundation
 import SwiftUI
 import CoreNFC
 
-class NFCReader : NSObject, NFCNDEFReaderSessionDelegate, ObservableObject {
+class NFCReader : NSObject, NFCTagReaderSessionDelegate, ObservableObject {
+    func tagReaderSessionDidBecomeActive(_ session: NFCTagReaderSession) {
+        NSLog("Session did become active")
+    }
+    
+    func tagReaderSession(_ session: NFCTagReaderSession, didInvalidateWithError error: Error) {
+        NSLog("Did invalidate with error")
+    }
+    
+    func tagReaderSession(_ session: NFCTagReaderSession, didDetect tags: [NFCTag]) {
+        NSLog("Did detect tags")
+    }
+    
     func scan() -> String? {
-        guard NFCNDEFReaderSession.readingAvailable else {
+        guard NFCTagReaderSession.readingAvailable else {
             return "Scanning not supported"
         }
-        let session = NFCNDEFReaderSession(delegate: self, queue: DispatchQueue.main,
-        invalidateAfterFirstRead: false)
-        session.alertMessage = "Scan your card, will ya?";
-        session.begin()
+        let session = NFCTagReaderSession(pollingOption: NFCTagReaderSession.PollingOption.iso15693, delegate: self, queue: DispatchQueue.main)
+        session?.alertMessage = "Scan your card, will ya?";
+        session?.begin()
         return nil
     }
     
-    func readerSession(_ session: NFCNDEFReaderSession, didInvalidateWithError error: Error) {
-        // Error handling
-        NSLog("Nope, that did not work")
-    }
-    
-    func readerSession(_ session: NFCNDEFReaderSession, didDetectNDEFs messages: [NFCNDEFMessage]) {
-        // Handle received messages
-        NSLog("Messages received")
-    }
-    
-    func readerSessionDidBecomeActive(_ session: NFCNDEFReaderSession) {
-        NSLog("Reader session did become active")
-    }
 }
