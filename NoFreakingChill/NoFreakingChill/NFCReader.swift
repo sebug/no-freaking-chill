@@ -12,6 +12,8 @@ import CoreNFC
 class NFCReader : NSObject, NFCTagReaderSessionDelegate, ObservableObject {
     private var nfcSession: NFCTagReaderSession?
     
+    @Published public var blockContent = ""
+    
     func tagReaderSessionDidBecomeActive(_ session: NFCTagReaderSession) {
         NSLog("Session did become active")
     }
@@ -28,6 +30,7 @@ class NFCReader : NSObject, NFCTagReaderSessionDelegate, ObservableObject {
                     switch result {
                     case .success(let data):
                         print(data)
+                        self.blockContent = "Something"
                     case .failure(_):
                         NSLog("Somehow failed")
                     }

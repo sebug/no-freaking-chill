@@ -16,10 +16,13 @@ struct Message: Identifiable {
 struct ContentView: View {
     @ObservedObject var reader = NFCReader()
     
-    @State private var message: Message? = nil;
+    @State private var message: Message? = nil
+
     
     var body: some View {
         VStack {
+            Text("Last Content scanned:")
+            Text(reader.blockContent)
             Text("To scan your NFC tag, " +
             "push the button.")
                 .padding()
