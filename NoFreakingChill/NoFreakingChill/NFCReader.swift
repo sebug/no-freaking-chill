@@ -30,7 +30,14 @@ class NFCReader : NSObject, NFCTagReaderSessionDelegate, ObservableObject {
                     switch result {
                     case .success(let data):
                         print(data)
-                        self.blockContent = "Something"
+                        
+                        let dataBytes = [UInt8](data)
+                        
+                        self.blockContent = dataBytes.map {
+                            String(format: "%02hhx", $0)
+                        }.joined()
+                        
+                        self.nfcSession?.invalidate()
                     case .failure(_):
                         NSLog("Somehow failed")
                     }
