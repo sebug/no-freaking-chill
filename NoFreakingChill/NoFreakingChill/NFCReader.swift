@@ -50,6 +50,7 @@ class NFCReader : NSObject, NFCTagReaderSessionDelegate, ObservableObject {
         guard NFCTagReaderSession.readingAvailable else {
             return "Scanning not supported"
         }
+        blockContent = ""
         nfcSession = NFCTagReaderSession(pollingOption: NFCTagReaderSession.PollingOption.iso15693, delegate: self, queue: DispatchQueue.main)
         nfcSession?.alertMessage = "Scan your card, will ya?";
         nfcSession?.begin()
